@@ -42,8 +42,17 @@ public class IncomingCallActivity extends BaseActivity {
     }
 
     public void onHangup(View view) {
-        NexmoHelper.currentCall.hangup();
-        finish();
+        NexmoHelper.currentCall.hangup(new NexmoRequestListener<NexmoCall>() {
+            @Override
+            public void onError(NexmoApiError nexmoApiError) {
+                notifyError(nexmoApiError);
+            }
+
+            @Override
+            public void onSuccess(NexmoCall nexmoCall) {
+                finish();
+            }
+        });
     }
 
     @Override
