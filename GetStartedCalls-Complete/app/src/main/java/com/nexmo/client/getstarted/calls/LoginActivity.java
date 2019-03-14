@@ -3,11 +3,15 @@ package com.nexmo.client.getstarted.calls;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import com.nexmo.client.NexmoClient;
 import com.nexmo.client.NexmoUser;
 import com.nexmo.client.request_listener.NexmoApiError;
 import com.nexmo.client.request_listener.NexmoRequestListener;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class LoginActivity extends BaseActivity {
 
@@ -15,6 +19,7 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        setUiAccordingToEnabledFeatures();
 
         NexmoHelper.init(getApplicationContext());
     }
@@ -37,12 +42,19 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void onSuccess(NexmoUser user) {
-                NexmoHelper.user = user;
-
-                Intent intent = new Intent(getBaseContext(), CreateCallActivity.class);
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
     }
+
+
+
+    private void setUiAccordingToEnabledFeatures() {
+        Button btnLoginJoe = findViewById(R.id.btnLoginJoe);
+        List<NexmoHelper.Features> featuresList = Arrays.asList(NexmoHelper.enabledFeatures);
+        btnLoginJoe.setVisibility(featuresList.contains(NexmoHelper.Features.IN_APP_to_IN_APP)? View.VISIBLE:View.GONE);
+    }
+
 }

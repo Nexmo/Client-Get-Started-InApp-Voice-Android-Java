@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:background="@drawable/round_cyan"
+        android:background="@drawable/round_accent"
         android:onClick="onLoginJaneClick"
         android:text="Login JANE"
         android:textSize="16sp" />
@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:background="@drawable/round_cyan"
+        android:background="@drawable/round_accent"
         android:onClick="onLoginJoeClick"
         android:text="Login JOE"
         android:textSize="16sp" />

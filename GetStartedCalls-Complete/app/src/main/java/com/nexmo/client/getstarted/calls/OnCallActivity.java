@@ -23,26 +23,32 @@ public class OnCallActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        NexmoHelper.currentCall.addCallEventListener(callEventListener);
+        if (NexmoHelper.currentCall != null) {
+            NexmoHelper.currentCall.addCallEventListener(callEventListener);
+        }
     }
 
     public void onHangup(View view) {
         NexmoHelper.currentCall.hangup(new NexmoRequestListener<NexmoCall>() {
-            @Override
-            public void onError(NexmoApiError nexmoApiError) {
-
-            }
 
             @Override
             public void onSuccess(NexmoCall nexmoCall) {
                 finish();
+                NexmoHelper.currentCall = null;
+            }
+
+            @Override
+            public void onError(NexmoApiError nexmoApiError) {
+                notifyError(nexmoApiError);
             }
         });
     }
 
     @Override
     protected void onStop() {
-        NexmoHelper.currentCall.removeCallEventListener(callEventListener);
+        if (NexmoHelper.currentCall != null) {
+            NexmoHelper.currentCall.removeCallEventListener(callEventListener);
+        }
         super.onStop();
     }
 

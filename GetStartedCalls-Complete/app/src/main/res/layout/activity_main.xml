@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="48dp">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        tools:text="Hi, Britt!" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvWait"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="8dp"
+            android:onClick="onInAppCallClick"
+            android:padding="16dp"
+            android:textColor="@color/black"
+            android:text="Wait for an incoming call..." />
+
+        <TextView
+            android:id="@+id/tvOr1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="36dp"
+            android:text="Or"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+        <Button
+            android:id="@+id/btnCallUser"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_accent_stroke"
+            android:drawablePadding="8dp"
+            android:drawableRight="@drawable/ic_phone"
+            android:drawableTint="@color/black"
+            android:onClick="onInAppCallClick"
+            android:padding="16dp"
+            android:textColor="@color/black"
+            tools:text="in app call" />
+
+        <TextView
+            android:id="@+id/tvOr2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="36dp"
+            android:text="Or"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+        <Button
+            android:id="@+id/btnCallPhone"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_accent_stroke"
+            android:drawableRight="@drawable/ic_phone"
+            android:drawablePadding="8dp"
+            android:drawableTint="@color/black"
+            android:onClick="onPhoneCallClick"
+            android:padding="16dp"
+            android:textColor="@color/black"
+            android:text="Start a phone call" />
+
+
+    </LinearLayout>
+
+</FrameLayout>
