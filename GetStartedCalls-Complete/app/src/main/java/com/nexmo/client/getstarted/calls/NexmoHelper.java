@@ -5,11 +5,7 @@ import android.util.Log;
 
 import com.nexmo.client.NexmoCall;
 import com.nexmo.client.NexmoClient;
-import com.nexmo.client.NexmoConnectionState;
-import com.nexmo.client.NexmoUser;
-import com.nexmo.client.request_listener.NexmoLoginListener;
-
-import java.lang.ref.WeakReference;
+import com.nexmo.client.request_listener.NexmoConnectionListener;
 
 class NexmoHelper {
 
@@ -27,29 +23,21 @@ class NexmoHelper {
     static final String JWT_JOE = "PLACEHOLDER"; //TODO: swap with the JWT you generated for Joe
 
     public static NexmoCall currentCall;
-    private static WeakReference<Context> contextRef;
     private static boolean didInit;
-
-
-    static NexmoLoginListener loginListener = new NexmoLoginListener() {
-        @Override
-        public void onLoginStateChange(NexmoLoginListener.ELoginState eLoginState, NexmoLoginListener.ELoginStateReason eLoginStateReason) {
-            Log.d(TAG, "NexmoLoginListener.onLoginStateChange : $eLoginState : $eLoginStateReason");
-        }
-
-        @Override
-        public void onAvailabilityChange(NexmoLoginListener.EAvailability eAvailability, NexmoConnectionState nexmoConnectionState) {
-            Log.d(TAG, "NexmoLoginListener.onAvailabilityChange : $eAvailability : $nexmoConnectionState");
-        }
-    };
 
     public static void init(Context appContext) {
         if (didInit) {
             return;
         }
         didInit = true;
-        contextRef = new WeakReference<>(appContext);
-        NexmoClient.init(new NexmoClient.NexmoClientConfig(), appContext, loginListener);
+        new NexmoClient.Builder()
+                .build(appContext)
+                .setConnectionListener(new NexmoConnectionListener() {
+                    @Override
+                    public void onConnectionStatusChange(ConnectionStatus status, ConnectionStatusReason reason) {
+                        Log.d(TAG, "NexmoConnectionListener.onConnectionStatusChange : $status : $reason");
+                    }
+                });
     }
 
     public static String getUserName() {

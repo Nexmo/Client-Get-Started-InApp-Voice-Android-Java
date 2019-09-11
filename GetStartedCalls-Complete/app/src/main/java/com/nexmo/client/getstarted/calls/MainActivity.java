@@ -60,16 +60,12 @@ public class MainActivity extends BaseActivity {
     };
 
     public void onInAppCallClick(View view) {
-        List<String> callee = new ArrayList<>();
-        callee.add(NexmoHelper.getOtherUserName());
-
+        String callee = NexmoHelper.getOtherUserName();
         NexmoClient.get().call(callee, NexmoCallHandler.IN_APP, callListener);
     }
 
     public void onPhoneCallClick(View view) {
-        List<String> callee = new ArrayList<>();
-        callee.add("PLACEHOLDER");  //TODO: swap with your phone number
-
+        String callee = "PLACEHOLDER";  //TODO: swap with your phone number
         NexmoClient.get().call(callee, NexmoCallHandler.SERVER, callListener);
     }
 
