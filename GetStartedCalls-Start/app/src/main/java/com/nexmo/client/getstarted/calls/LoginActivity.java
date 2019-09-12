@@ -15,7 +15,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         setUiAccordingToEnabledFeatures();
 
-        NexmoHelper.init(getApplicationContext());
+        NexmoHelper.init();
     }
 
     public void onLoginJaneClick(View view) {
