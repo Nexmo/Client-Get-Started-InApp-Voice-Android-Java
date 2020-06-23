@@ -1,5 +1,6 @@
 package com.nexmo.client.getstarted.calls;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,7 +15,6 @@ import com.nexmo.client.NexmoIncomingCallListener;
 import com.nexmo.client.request_listener.NexmoApiError;
 import com.nexmo.client.request_listener.NexmoRequestListener;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -59,11 +59,13 @@ public class MainActivity extends BaseActivity {
         }
     };
 
+    @SuppressLint("MissingPermission")
     public void onInAppCallClick(View view) {
         String callee = NexmoHelper.getOtherUserName();
         NexmoClient.get().call(callee, NexmoCallHandler.IN_APP, callListener);
     }
 
+    @SuppressLint("MissingPermission")
     public void onPhoneCallClick(View view) {
         String callee = "PLACEHOLDER";  //TODO: swap with your phone number
         NexmoClient.get().call(callee, NexmoCallHandler.SERVER, callListener);
@@ -74,8 +76,6 @@ public class MainActivity extends BaseActivity {
         NexmoClient.get().removeIncomingCallListeners();
         super.onStop();
     }
-
-
 
     private void setUiAccordingToEnabledFeatures() {
         TextView title = findViewById(R.id.tvTitle);
@@ -90,7 +90,8 @@ public class MainActivity extends BaseActivity {
         if (featuresList.contains(NexmoHelper.Features.IN_APP_to_IN_APP)){
             tvOr1.setVisibility(View.VISIBLE);
             btnCallUser.setVisibility(View.VISIBLE);
-            btnCallUser.setText(String.format("In-App call to user %s", NexmoHelper.getUserName()));
+            String otherUserName = NexmoHelper.getOtherUserName();
+            btnCallUser.setText(String.format("In-App call to user %s", otherUserName));
         } else {
             tvOr1.setVisibility(View.GONE);
             btnCallUser.setVisibility(View.GONE);
