@@ -9,6 +9,7 @@ import com.nexmo.client.NexmoCallMemberStatus;
 import com.nexmo.client.NexmoMediaActionState;
 
 import java.lang.ref.WeakReference;
+import java.util.logging.Logger;
 
 import static android.support.constraint.Constraints.TAG;
 

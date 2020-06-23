@@ -9,8 +9,6 @@ import com.nexmo.client.request_listener.NexmoConnectionListener;
 
 class NexmoHelper {
 
-    private static final String TAG = "Nexmo-get-started";
-
     public static Features[] enabledFeatures = {Features.IN_APP_to_IN_APP, Features.PHONE_to_IN_APP, Features.IN_APP_to_PHONE};
 
     enum Features {IN_APP_to_IN_APP, PHONE_to_IN_APP, IN_APP_to_PHONE}
@@ -31,13 +29,8 @@ class NexmoHelper {
         }
         didInit = true;
         new NexmoClient.Builder()
-                .build(appContext)
-                .setConnectionListener(new NexmoConnectionListener() {
-                    @Override
-                    public void onConnectionStatusChange(ConnectionStatus status, ConnectionStatusReason reason) {
-                        Log.d(TAG, "NexmoConnectionListener.onConnectionStatusChange : $status : $reason");
-                    }
-                });
+                .useFirstIceCandidate(true)
+                .build(appContext);
     }
 
     public static String getUserName() {
