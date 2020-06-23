@@ -33,7 +33,7 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void onConnectionStatusChange(@NotNull ConnectionStatus status, @NotNull ConnectionStatusReason reason) {
-                Log.d(TAG, "NexmoConnectionListener.onConnectionStatusChange : $status : $reason");
+                Log.d(TAG, String.format("NexmoConnectionListener.onConnectionStatusChange : %s : %s", status, reason));
                 if(status == ConnectionStatus.CONNECTED) {
                     Intent intent = new Intent(getBaseContext(), MainActivity.class);
                     startActivity(intent);
